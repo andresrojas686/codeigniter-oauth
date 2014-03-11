@@ -35,7 +35,7 @@ class OAuth_Consumer
 			throw new Exception('Required option not provided: key');
 		}
 
-/* TODO Erm? YouTube doesnt need this 
+/* TODO Erm? YouTube doesnt need this
 		if ( ! isset($options['secret']))
 		{
 			throw new Exception('Required option not provided: secret');
@@ -49,7 +49,7 @@ class OAuth_Consumer
 		{
 			$this->callback = $options['callback'];
 		}
-		
+
 		if (isset($options['scope']))
 		{
 			$this->scope = $options['scope'];

@@ -1,7 +1,7 @@
 ## CodeIgniter OAuth
 
 ## !!! DEPRECATED !!!
-**This package is no longer actively maintained. If somebody sends in a pull request with some major security bug 
+**This package is no longer actively maintained. If somebody sends in a pull request with some major security bug
 then I'll merge it, but otherwise nothing will be done. Use [thephpleague/oauth1-client](https://github.com/thephpleague/oauth1-client) instead.**
 
 An implementation of the [OAuth](http://oauth.net/) protocol with drivers to work with different providers such as Twitter, Google, etc.
@@ -41,9 +41,9 @@ class Auth extends CI_Controller
 	public function oauth($provider)
 	{
 		$this->load->helper('url');
-		
+
 		$this->load->spark('oauth/0.3.1');
-	
+
 		// Create an consumer from the config
 		$consumer = $this->oauth->consumer(array(
 			'key' => $config['key'],
@@ -52,14 +52,14 @@ class Auth extends CI_Controller
 
 		// Load the provider
 		$provider = $this->oauth->provider($provider);
-		
+
 		// Create the URL to return the user to
 		$callback = site_url('auth/oauth/'.$provider->name);
 
 		if ( ! $this->input->get_post('oauth_token'))
 		{
 			// Add the callback URL to the consumer
-			$consumer->callback($callback);	
+			$consumer->callback($callback);
 
 			// Get a request token for the consumer
 			$token = $provider->request_token($consumer);
@@ -84,7 +84,7 @@ class Auth extends CI_Controller
 			}
 
 			if ( ! empty($token) AND $token->access_token !== $this->input->get_post('oauth_token'))
-			{	
+			{
 				// Delete the token, it is not valid
 				$this->session->unset_userdata('oauth_token');
 
@@ -100,15 +100,15 @@ class Auth extends CI_Controller
 
 			// Exchange the request token for an access token
 			$token = $provider->access_token($consumer, $token);
-		
+
 			// We got the token, let's get some user data
 			$user = $provider->get_user_info($consumer, $token);
-		
+
 			// Here you should use this information to A) look for a user B) help a new user sign up with existing data.
 			// If you store it all in a cookie and redirect to a registration page this is crazy-simple.
 			echo "<pre>Tokens: ";
 			var_dump($token).PHP_EOL.PHP_EOL;
-			
+
 			echo "User Info: ";
 			var_dump($user);
 		}

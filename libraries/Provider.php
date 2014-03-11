@@ -30,7 +30,7 @@ abstract class OAuth_Provider {
 	 * @var  array  additional request parameters to be used for remote requests
 	 */
 	protected $params = array();
-	
+
 	/**
 	 * @var  string  scope separator, most use "," but some like Google are spaces
 	 */
@@ -109,7 +109,7 @@ abstract class OAuth_Provider {
 	 * @return  string
 	 */
 	abstract public function url_access_token();
-	
+
 	/**
 	 * Returns basic information about the user.
 	 *
@@ -212,7 +212,7 @@ abstract class OAuth_Provider {
 
 		// Create a response from the request
 		$response = $request->execute();
-		
+
 		// Store this token somewhere useful
 		return OAuth_Token::forge('access', array(
 			'access_token'  => $response->param('oauth_token'),

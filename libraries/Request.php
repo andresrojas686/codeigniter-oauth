@@ -20,7 +20,7 @@ class OAuth_Request {
 		include_once "Request/{$type}.php";
 
 		$class = 'OAuth_Request_'.$type;
-		
+
 		return new $class($method, $url, $params);
 	}
 

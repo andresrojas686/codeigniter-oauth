@@ -31,7 +31,7 @@ class OAuth_Provider_Tumblr extends OAuth_Provider {
 	{
 		return 'http://www.tumblr.com/oauth/access_token';
 	}
-	
+
 	public function get_user_info(OAuth_Consumer $consumer, OAuth_Token $token)
 	{
 		// Create a new GET request with the required parameters
@@ -48,13 +48,13 @@ class OAuth_Provider_Tumblr extends OAuth_Provider {
 		$status = current($response);
 		$response = next($response);
 		$user = $response->user;
-		
+
 		// Create a response from the request
 		return array(
-			'uid' => $user->name,    // Tumblr doesn't provide a unique key other than name
-			'name' => $user->name,
-			'likes' => $user->likes,
-			'following' => $user->following,
+			'uid'                 => $user->name,    // Tumblr doesn't provide a unique key other than name
+			'name'                => $user->name,
+			'likes'               => $user->likes,
+			'following'           => $user->following,
 			'default_post_format' => $user->default_post_format,
 		);
 	}
